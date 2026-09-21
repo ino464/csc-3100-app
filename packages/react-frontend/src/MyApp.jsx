@@ -8,11 +8,11 @@ function MyApp() {
   
   const [characters, setCharacters] = useState([]);
   
-  function removeOneCharacter(index) {
-    const updated = characters.filter((character, i) => {
-      return i !== index;
-    });
-    setCharacters(updated);
+  function removeOneCharacter(id) {
+    fetch(`http://localhost:8000/users/${id}`, { method: "DELETE" })
+      .then((res) => {
+        if (res.status === 204) setCharacters(characters.filter((character) => character.id !== id));
+      });
   }
 
   
