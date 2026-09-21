@@ -95,8 +95,8 @@ const generateId = () => Math.random().toString(36).slice(2);
 app.post("/users", (req, res) => {
   const userToAdd = req.body;
   userToAdd.id = generateId();
-  addUser(userToAdd);
-  res.status(201).send();
+  const newUser = addUser(userToAdd);
+  res.status(201).send(newUser);
 });
 
 

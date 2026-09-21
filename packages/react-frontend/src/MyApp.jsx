@@ -19,7 +19,9 @@ function MyApp() {
 function updateList(person) {
   postUser(person)
     .then((res) => {
-      if (res.status === 201) setCharacters([...characters, person]);
+      if (res.status === 201) {
+        res.json().then((newUser) => setCharacters([...characters, newUser]));
+      }
     })
     .catch((error) => {
       console.log(error);
